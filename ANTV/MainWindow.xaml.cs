@@ -729,6 +729,8 @@ namespace ANTV
         //重新截图
         private async void Re_Screenshot_Click(object sender, RoutedEventArgs e)
         {
+            //没有Snapshot文件夹则创建
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Environment.CurrentDirectory, "Snapshot"));
 
             // 获取当前右键点击的项的 DataContext
             if (sender is MenuItem menuItem && menuItem.DataContext is MediaChannel channel)
@@ -863,6 +865,8 @@ namespace ANTV
         }
         async void StartSnapshot()
         {
+            //没有Snapshot文件夹则创建
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Environment.CurrentDirectory, "Snapshot"));
             //var semaphore = new SemaphoreSlim(10); // 限制同时进行的任务数为 5
             //var tasks = Channels.Where(item => item.isAvailable == 1 && !item.Radio).Select(async item =>
             //{
