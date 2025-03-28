@@ -1,0 +1,1 @@
+系统需要安装ffmpeg并把ffmpeg.exe添加到环境变量。
