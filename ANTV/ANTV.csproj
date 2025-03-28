@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Image\ANTV.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Symbols\**" />
+    <EmbeddedResource Remove="Symbols\**" />
+    <None Remove="Symbols\**" />
+    <Page Remove="Symbols\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="MyWindow.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+ 
+    <None Remove="Fonts\FontAwesome5Free-Solid-900.otf" />
+    <None Remove="Image\loading.gif" />
+    <None Remove="Image\placeholder.jpg" />
+    <None Remove="Image\placeholder.png" />
+    <None Remove="Image\placeholder2.png" />
+    <None Remove="Image\placeholder3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="MainWindow - 副本.xaml" />
+    <Page Remove="MyWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp" Version="3.9.1" />
+    <PackageReference Include="LibVLCSharp.WPF" Version="3.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\ANTV.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+ 
+    <Resource Include="Fonts\FontAwesome5Free-Solid-900.otf" />
+    <Resource Include="Image\loading.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\placeholder.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\placeholder.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\placeholder2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\placeholder3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,197 @@
+﻿#EXTM3U
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",直播中国
+https://gcalic.v.myalicdn.com/gc/wgw05_1/index.m3u8?contentid=2820180516001
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",CCTV4K
+http://php.jdshipin.com/TVOD/iptv.php?id=cctv4k
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",CCTV4K
+http://php.jdshipin.com/bestv.php?id=cctv4k/15000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",CCTV16-4K
+http://php.jdshipin.com/bst2.php?id=cctv16hd4k/15000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",CCTV16-4K
+http://php.jdshipin.com/bestv.php?id=cctv16hd4k/15000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",欢笑剧场4K
+http://php.jdshipin.com/bestv.php?id=hxjc4k/15000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",欢笑剧场4K
+http://php.jdshipin.com/bst2.php?id=hxjc4k/15000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",北京纪实8K
+http://111.31.106.140/downflv.brtvcloud.com/8klive/8kliveok.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",赣州新闻综合
+http://pili-live-hls-sjxgz2024.sobeylive.com/jxgz2024/396_q_live172526329228525.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",赣州新闻综合
+http://115.150.63.77:9902/tsfile/live/0001_50.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西新闻
+http://php.jdshipin.com/TVOD/iptv.php?id=jxxw
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西都市
+http://php.jdshipin.com/TVOD/iptv.php?id=jxds
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西经济生活
+http://php.jdshipin.com/TVOD/iptv.php?id=jxjjsh
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西影视旅游
+http://php.jdshipin.com/TVOD/iptv.php?id=jxysly
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西公共农业
+http://php.jdshipin.com/TVOD/iptv.php?id=jxggny
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西少儿
+http://php.jdshipin.com/TVOD/iptv.php?id=jxse
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",江西教育
+http://php.jdshipin.com/TVOD/iptv.php?id=jxjy
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",陶瓷频道
+http://php.jdshipin.com/TVOD/iptv.php?id=taoci
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",凤凰中文
+http://php.jdshipin.com/TVOD/iptv.php?id=fhzw
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",凤凰资讯
+http://php.jdshipin.com/TVOD/iptv.php?id=fhzx
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",凤凰香港
+http://php.jdshipin.com/TVOD/iptv.php?id=fhhk2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",凤凰资讯
+http://php.jdshipin.com/TVOD/iptv.php?id=fhzx2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",CGTN纪录
+https://english-livetx.cgtn.com/hls/yypdjlctzb_hd.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",三沙卫视
+https://pullsstv90080111.ssws.tv/live/SSTV20220729.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",青海卫视
+http://stream.qhbtv.com/qhws/sd/live.m3u8?_upt=1da074361609506578
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",山西卫视
+http://httpdvb.slave.shuliyun.com:13164/playurl?playtype=live&protocol=hls&accesstoken=G8E222BE4V21307D1TBC062A6JF7E607ABM7B61CDEDID068875K98BDB0&playtoken=31607WESMAQDI&programid=4200000166.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",西藏卫视
+http://php.jdshipin.com/xztv.php?id=ws
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",海峡卫视
+http://php.jdshipin.com/TVOD/iptv.php?id=hxws
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",海峡卫视
+http://php.jdshipin.com/fujian.php?id=9
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",海峡卫视
+http://php.jdshipin.com/bestv.php?id=hxwshd4m/4000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",安多卫视
+http://stream.qhbtv.com/adws/sd/live.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",延边卫视
+http://live.ybtvyun.com/video/s10006-44f040627ca1/index.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",西藏藏语卫视
+http://php.jdshipin.com/xztv.php?id=zy
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南经视
+http://php.jdshipin.com/TVOD/iptv.php?id=hnjs
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南都市
+http://php.jdshipin.com/TVOD/iptv.php?id=hnds
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南电视剧
+http://php.jdshipin.com/TVOD/iptv.php?id=hndsj
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南电影
+http://php.jdshipin.com/TVOD/iptv.php?id=hndy
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南娱乐
+http://php.jdshipin.com/TVOD/iptv.php?id=hnyl
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南国际
+http://php.jdshipin.com/TVOD/iptv.php?id=hngj
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",1905环球经典
+http://php.jdshipin.com/1905.php?id=1905dy2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广州综合台
+http://php.jdshipin.com/gztv.php?id=zhonghe
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广州综合台
+http://php.jdshipin.com/TVOD/iptv.php?id=gzzh
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广州南国都市
+http://php.jdshipin.com/TVOD/iptv.php?id=gzngds
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广州南国都市
+http://php.jdshipin.com/gztv.php?id=shenghuo
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广州影视
+http://php.jdshipin.com/gztv.php?id=yingshi
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",西藏影视文化
+http://php.jdshipin.com/xztv.php?id=ys
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",安徽影视
+http://112.30.194.221:20080/live/d18ff95cb1fb4bbcb56215e189fc12be/hls.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",重温经典
+http://php.jdshipin.com/TVOD/iptv.php?id=cwjd
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",武术世界
+http://live.dxhmt.cn:9080/live/yshnpre.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",文物宝库
+http://live.dxhmt.cn:9080/19903718786/503136115d714e6796389709a5c74f77.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",新视觉
+http://php.jdshipin.com/bestv.php?id=xsjhd/4000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",新视觉
+http://httplive.slave.bfgd.com.cn:14311/playurl?playtype=live&protocol=http&accesstoken=R5F2408FEU3198804BK78052214IE73560DFP2BF4M340CE68V0Z339CBW1626D4D261E46FEA&playtoken=ABCDEFGH&programid=4200000249
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",新视觉
+http://php.jdshipin.com/TVOD/iptv.php?id=xsj
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",无线新闻
+http://php.jdshipin.com/TVOD/iptv.php?id=tvbxw
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",无线新闻
+http://php.jdshipin.com/TVOD/iptv.php?id=wxxwt
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",翡翠台
+http://php.jdshipin.com/TVOD/iptv.php?id=fct
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",翡翠台
+http://php.jdshipin.com/TVOD/iptv.php?id=fct2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",翡翠台
+http://php.jdshipin.com/TVOD/iptv.php?id=fct4
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",华丽翡翠台
+http://php.jdshipin.com/TVOD/iptv.php?id=huali
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",华丽翡翠台
+http://php.jdshipin.com/TVOD/iptv.php?id=huali2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB星河
+http://php.jdshipin.com/TVOD/iptv.php?id=xinghe
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB星河
+http://php.jdshipin.com/TVOD/iptv.php?id=tvbxh
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB星河
+http://v2h.jdshipin.com/xinghe_1/xinghe_1.stream/chunklist_w106.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",明珠台
+http://php.jdshipin.com/TVOD/iptv.php?id=mzt
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",明珠台
+http://php.jdshipin.com/TVOD/iptv.php?id=mzt2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",香港卫视
+http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB Plus
+http://php.jdshipin.com/TVOD/iptv.php?id=j2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB Plus
+http://php.jdshipin.com/TVOD/iptv.php?id=tvbp
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB亚洲武侠
+http://php.jdshipin.com/TVOD/iptv.php?id=yzwx
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",TVB娱乐新闻台
+http://php.jdshipin.com/TVOD/iptv.php?id=tvbylxw
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",VIUTV
+http://php.jdshipin.com/TVOD/iptv.php?id=viutv
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",VIUTV
+http://php.jdshipin.com/TVOD/iptv.php?id=viutv2
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",Viu剧集台
+http://php.jdshipin.com/TVOD/iptv.php?id=viujj
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",HOY TV
+http://php.jdshipin.com/TVOD/iptv.php?id=hoytv
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",RTHK31
+http://php.jdshipin.com/TVOD/iptv.php?id=rthk31
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",RTHK33
+https://rthktv33-live.akamaized.net/hls/live/2101641/RTHKTV33/stream05/streamPlaylist.m3u8
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",千禧经典台
+http://php.jdshipin.com/TVOD/iptv.php?id=tvbc
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",Astro AOD
+http://php.jdshipin.com/TVOD/iptv.php?id=aod
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",美亚电影台
+http://php.jdshipin.com/TVOD/iptv.php?id=meiya
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",澳视澳门
+http://php.jdshipin.com/TVOD/iptv.php?id=asam
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",澳门莲花
+http://php.jdshipin.com/amlh.php
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",华语影院
+http://php.jdshipin.com/bestv.php?id=hyyy8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",星光影院
+http://php.jdshipin.com/bestv.php?id=xgyy8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",全球大片
+http://php.jdshipin.com/bestv.php?id=qqdp8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",热门剧场
+http://php.jdshipin.com/bestv.php?id=rmjc8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",谍战剧场
+http://php.jdshipin.com/bestv.php?id=dzjc8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",青春动漫
+http://php.jdshipin.com/bestv.php?id=qcdm8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",宝宝动画
+http://php.jdshipin.com/bestv.php?id=bbdh8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",戏曲精选
+http://php.jdshipin.com/bestv.php?id=xqjx8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",热门综艺
+http://php.jdshipin.com/bestv.php?id=rmzy8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",超级体育
+http://php.jdshipin.com/bestv.php?id=qcsj8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",健康养生
+http://php.jdshipin.com/bestv.php?id=jkys8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",百变课堂
+http://php.jdshipin.com/bestv.php?id=bbkt8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",看天下精选
+http://php.jdshipin.com/bestv.php?id=ktxjx8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",电竞天堂
+http://php.jdshipin.com/bestv.php?id=djtt8m/8000000
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",广东4K超高清
+http://php.jdshipin.com/TVOD/iptv.php?id=gd4k
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",湖南IPTV4K
+http://php.jdshipin.com/TVOD/iptv.php?id=hn4k
+#EXTINF:-1 tvg-name="" tvg-logo="" group-title="",云南4K
+http://php.jdshipin.com/TVOD/iptv.php?id=yn4k

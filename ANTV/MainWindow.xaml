@@ -1,0 +1,1269 @@
+﻿<Window x:Class="ANTV.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        xmlns:wc="http://schemas.microsoft.com/winfx/2006/xaml/presentation/windows"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        
+   
+        xmlns:wpf="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+        
+        xmlns:local="clr-namespace:ANTV.Converter"
+        Icon="pack://application:,,,/image/ANTV.ico"
+        Title="Ans IPTV Tester" Width="1546" Height="801" 
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="CanResize" 
+        AllowsTransparency="False" BorderThickness="1"  BorderBrush="#272727"
+        Background="Transparent"
+
+        AllowDrop="True"
+        DragEnter="Window_DragEnter"
+        Drop="Window_Drop"
+        
+        MaxWidth="{StaticResource {x:Static SystemParameters.MaximizedPrimaryScreenWidthKey}}" 
+        MaxHeight="{StaticResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" >
+
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            CaptionHeight="30"
+            ResizeBorderThickness="10,10,4,10"
+            GlassFrameThickness="100"
+            CornerRadius="30"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <local:LatencyToColorConverter x:Key="LatencyToColorConverter" />
+        <local:LatencyToWidthConverter x:Key="LatencyToWidthConverter" />
+        <local:BoolToTextConverter x:Key="BoolToTextConverter" />
+        <!---->
+        <Style x:Key="CloseButtonStylex" TargetType="Button">
+            <!-- 设置默认属性 -->
+  
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- 设置触发器 -->
+            <Style.Triggers>
+                <!-- 鼠标悬停时背景颜色变化 -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#34c434"/>
+                </Trigger>
+
+                <!-- 鼠标按下时背景颜色变化 -->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#555555"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CustomButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <StackPanel Background="{TemplateBinding Background}" HorizontalAlignment="Center">
+                            <!-- 图标部分 -->
+                            <!--<Viewbox Width="50" Height="10">
+                                <Canvas>
+                                    --><!-- SVG Path 数据 --><!--
+                                    <Path Data="M0,0 L25,0 L12.5,25 Z" Fill="Blue" />
+                                </Canvas>
+                            </Viewbox>-->
+                            <!-- 文字部分 -->
+                            <TextBlock Width="50" TextAlignment="Center"
+                                       FontFamily="pack://application:,,,/ANTV;component/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free Solid"                                
+                                       VerticalAlignment="Center"
+                                       Text="{TemplateBinding Content}" 
+                                       Margin="0,14,0,0" 
+                                       HorizontalAlignment="Center"
+                                       FontSize="20" 
+                                      
+                                       Foreground="White" 
+                                       Panel.ZIndex="2" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- 默认背景 -->
+            <Setter Property="Background" Value="#2B2B2B" />
+
+            <!-- 触发器样式 -->
+            <Style.Triggers>
+                <!-- 鼠标悬停 -->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#fff" />
+                    <Setter Property="Background" Value="#404040" />
+                </Trigger>
+
+                <!-- 按钮被按下 -->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#555555" />
+                </Trigger>
+
+                <!-- 按钮选中状态 -->
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="#2A446C" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        
+            <Style x:Key="CustomButtonImgTxtStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="0" Padding="1" BorderBrush="BlueViolet" BorderThickness="0">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                    <!-- 图标 -->
+                                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="{TemplateBinding Tag}" FontSize="26" Margin="0,3,0,5" />
+                                    <!-- 文本 -->
+                                    <TextBlock Text="{TemplateBinding Content}" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="#1F1F1F" />
+                <Setter Property="Foreground" Value="White" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#343434" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="#555555" />
+                    </Trigger>
+
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        <Style x:Key="SearchCloseButtonStyle" TargetType="Button">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="LayoutRoot" Background="Transparent" Width="32" Height="32" >
+                            <TextBlock x:Name="txt" Text="{TemplateBinding Content}" FontFamily="Segoe MDL2 Assets" FontSize="8" 
+                               Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               RenderOptions.ClearTypeHint="Auto" 
+                               TextOptions.TextRenderingMode="Aliased" 
+                               TextOptions.TextFormattingMode="Display"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="txt" Property="Foreground" Value="#FFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomButtonStyleWithoutGroup" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel Background="{TemplateBinding Background}" HorizontalAlignment="Center">
+                            <!-- 图标部分 -->
+                            <Viewbox Width="50" Height="0">
+                               
+                                    <TextBlock Width="50" TextAlignment="Center"
+                                         FontFamily="pack://application:,,,/ANTV;component/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                         VerticalAlignment="Center"
+                                         Text="{TemplateBinding Content}" Margin="0,13,0,0" 
+                                         HorizontalAlignment="Center" 
+                                         FontSize="20" Foreground="Purple" />
+ 
+                            </Viewbox>
+                            <TextBlock Width="50" TextAlignment="Center"
+                                FontFamily="pack://application:,,,/ANTV;component/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                VerticalAlignment="Center"
+                                Text="{TemplateBinding Content}" Margin="0,13,0,0" 
+                                HorizontalAlignment="Center" 
+                                FontSize="20" Foreground="White" />
+                             
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#2B2B2B" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#404040" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#555555" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CustomMenuButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="5"
+                                BorderBrush="Yellow"
+                                BorderThickness="0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                <!-- 图标 "pack://application:,,,/ANTV;component/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free Solid" -->
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="{TemplateBinding Tag}" 
+                                   FontSize="16" 
+                                   Margin="0,0,10,0" />
+                                <!-- 文本 -->
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                   FontSize="11" 
+                                   VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border> 
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#1F1F1F" />
+            <Setter Property="Foreground" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#343434" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#555555" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- 定义转换器 -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <!-- 按钮样式 -->
+        <Style x:Key="DropdownButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2b2b2b" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="#808080" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+        <!-- 下拉菜单按钮按钮样式 -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button" >
+            <Setter Property="Template" >
+                <Setter.Value >
+                    <ControlTemplate TargetType="Button" >
+
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="Transparent" 
+                            BorderThickness="0" 
+                            CornerRadius="4" Margin="1" Padding="5">
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <!-- 图标 -->
+                                <TextBlock FontFamily="pack://application:,,,/ANTV;component/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                                   Text="{TemplateBinding Tag}" 
+                                   Margin="10,0,10,0" 
+                                   Foreground="{TemplateBinding Foreground}" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="14" />
+                                <!-- 文本 -->
+                                <ContentPresenter VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#2C2C2C" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0078D4" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#555555" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+        <!--Caption 按钮 最大化最小化关闭按钮 Base style for title bar buttons-->
+            <Style x:Key="CaptionButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="LayoutRoot" Background="Transparent" Width="47" Height="32">
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" FontFamily="Segoe MDL2 Assets" FontSize="10" 
+                           Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           RenderOptions.ClearTypeHint="Auto" TextOptions.TextRenderingMode="Aliased"  TextOptions.TextFormattingMode="Display"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="txt" Property="Foreground" Value="#296ACC"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="CaptionCloseButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="LayoutRoot" Background="Transparent" Width="47" Height="32">
+                                <TextBlock x:Name="txt" Text="{TemplateBinding Content}" FontFamily="Segoe MDL2 Assets" FontSize="10" 
+                           Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           RenderOptions.ClearTypeHint="Auto" TextOptions.TextRenderingMode="Aliased"  TextOptions.TextFormattingMode="Display"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="#ff0000"/>
+                                    <Setter TargetName="txt" Property="Foreground" Value="#fff"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--Minimize-->
+            <Style x:Key="MinimizeButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
+                <Setter Property="Content" Value="&#xE949;"/>
+            </Style>
+
+            <!--Maximize-->
+            <Style x:Key="MaximizeButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
+                <Setter Property="Content" Value="&#xE739;"/>
+            </Style>
+
+            <!--Restore-->
+            <Style x:Key="RestoreButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
+                <Setter Property="Content" Value="&#xE923;"/>
+            </Style>
+
+            <!--Close-->
+            <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionCloseButtonStyle}">
+                <Setter Property="Content" Value="&#xE106;"/>
+            </Style>
+
+       
+            <!--#region 自定义上下文菜单样式-->
+            <Style TargetType="ContextMenu" x:Key="CustomContextMenuStyle">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContextMenu">
+                            <Border Padding="3" Background="#2C2C2C" BorderBrush="#363636" BorderThickness="1" CornerRadius="5">
+                                <StackPanel>
+                                    <ItemsPresenter />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#2C2C2C" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="MenuItem">
+                            <Border x:Name="Border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="4">
+                                <Grid>
+                                    <!--<Rectangle x:Name="Highlight" Fill="Gray" Opacity="0" />-->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <!-- 图标 -->
+                                        <ContentPresenter ContentSource="Icon" Margin="5,0" VerticalAlignment="Center" />
+                                        <!-- 菜单文字 -->
+                                        <TextBlock Text="{TemplateBinding Header}" 
+                                                                Foreground="{TemplateBinding Foreground}" 
+                                                                Margin="15,0" 
+                                                                VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- 鼠标悬停样式 -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <!--<Setter TargetName="Highlight" Property="Opacity" Value="1" />-->
+                                    <Setter Property="Background" Value="#0078D4" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion-->
+
+        <VisualBrush x:Key="txt_tips" TileMode="None" Opacity="0.7" Stretch="None" AlignmentX="Left">
+            <VisualBrush.Visual>
+                <Border Background="Transparent">
+                    <TextBlock Text="请输入频道名"   Margin="8 0 0 0" FontStyle="Italic" FontSize="15" Foreground="White"/>
+                </Border>
+            </VisualBrush.Visual>
+        </VisualBrush>
+        <Style TargetType="TextBox">
+            <!-- 默认背景 有值后的背景-->
+            <Setter Property="Background" Value="#2B2B2B"/>
+
+            <Style.Triggers>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Background" Value="OrangeRed"/>
+                    <Setter Property="Padding" Value="10 0 0 0" />
+
+                </Trigger>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background" Value="{StaticResource txt_tips}"/>
+                   
+                    <Setter Property="Padding" Value="10 0 0 0"/>
+                    <Setter Property="CaretBrush" Value="White" /> <!--光标颜色-->
+                   
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!--Title bar button commands-->
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Close" />
+        <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Maximize" />
+        <CommandBinding Command="{x:Static SystemCommands.MinimizeWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Minimize" />
+        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed_Restore" />
+    </Window.CommandBindings>
+
+    <!--<Border  x:Name="MainWindowBorder">-->
+    <Grid ShowGridLines="False" Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="{Binding TopButtonPanelRowHeight,FallbackValue=60}"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1F1F1F" Height="32" VerticalAlignment="Top" Margin="0" >
+            <Grid>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <!--图标 icon-->
+                    <Image Source="pack://application:,,,/ANTV;component/Image/ANTV.ico" Width="18" Margin="10 8 8 8" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Text="ANTV IPTV Tester" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="165 0 0 0">
+                    <TextBlock   Foreground="Gray"  Text="{Binding CurrentFileName}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0">
+                     <!--最小化最大化关闭按钮-->
+                    <!--<Button Style="{StaticResource CloseButtonStyle}" Content="_" Background="Transparent" Foreground="AliceBlue" BorderThickness="0" Width="47" Height="30" Margin="0,0,1,0" Click="Minimize_Click"/>
+                    <Button Style="{StaticResource CloseButtonStyle}" Content="□" Background="Transparent" Foreground="AliceBlue" BorderThickness="0" Width="47" Height="30" Margin="0,0,1,0" Click="Maximize_Click"/>
+                    <Button Style="{StaticResource CloseButtonStyle}" Content="x" Background="Red"         Foreground="AliceBlue" BorderThickness="0" FontSize="10" Width="47" Height="30" Margin="0,0,-9,0" Click="Close_Click"/>-->
+                         
+                    <Button Style="{StaticResource MinimizeButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.MinimizeWindowCommand}"/>
+                    <Button Style="{StaticResource RestoreButtonStyle}"  WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.RestoreWindowCommand}"  x:Name="RestoreButton"  Visibility="Collapsed" />
+                    <Button Style="{StaticResource MaximizeButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.MaximizeWindowCommand}" x:Name="MaximizeButton" Visibility="Visible" />
+                    <Button Style="{StaticResource CloseButtonStyle}"    WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.CloseWindowCommand}"  />
+                    
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Background="#1F1F1F" Visibility="{Binding IsTopButtonPanelVisibility}">
+            <DockPanel LastChildFill="False">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="打开文件" VerticalAlignment="Bottom" Margin="50 0 0 0" Tag="&#xed25;" Width="100" Height="35" Click="OpenFileButton_Click"/>
+                    <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="导出文件" VerticalAlignment="Bottom" Margin="0 0 0 0"   Tag="&#xe105;" Width="100" Height="35" Click="DropdownButton_Click"/>
+
+                    <Button Style="{StaticResource CustomButtonImgTxtStyle}" Content="开始"  Width="68" Height="60"  Margin="20 0 0 0" Tag="&#xe117;"  Click="StartTestButton_Click"/>
+                    <Button Style="{StaticResource CustomButtonImgTxtStyle}" IsEnabled="{Binding IsSnapshotButtonEnabled}"  Content="快照"  Width="68" Height="60"  Margin="0 0 0 0" Tag="&#xeb9f;"  Click="SnapshotButton_Click"/>
+                    <Button Style="{StaticResource CustomButtonImgTxtStyle}" Content="EPG"  Width="68" Height="60"  Margin="0 0 0 0" Tag="&#xee93;"  Click="SettingsButton_Click"/>
+                    
+                    <StackPanel  Width="68" Height="60" Background="#1F1F1F" Margin="20 0 0 0">
+                        <TextBlock TextAlignment="Center" Foreground="White"  FontSize="14" Margin="0 5 0 0" >频道总数</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="White" FontSize="22"  Margin="0 5 0 0"  Text="{Binding TotalChannels}" />
+                    </StackPanel>
+                    <StackPanel  Width="68" Height="60" Background="#1F1F1F" AllowDrop="True" >
+                        <TextBlock TextAlignment="Center" Foreground="White"  FontSize="14" Margin="0 5 0 0" >有效</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="#11F800" FontSize="22"  Margin="0 5 0 0"   Text="{Binding OnLineChannels}" />
+                    </StackPanel>
+                    <StackPanel  Width="68" Height="60" Background="#1F1F1F" AllowDrop="True" >
+                        <TextBlock TextAlignment="Center" Foreground="White"  FontSize="14" Margin="0 5 0 0" >无效</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="Red" FontSize="22"  Margin="0 5 0 0"   Text="{Binding OffLineChannels}" />
+                    </StackPanel>
+                    <StackPanel  Width="88" Height="60" Background="#1F1F1F" AllowDrop="True" Margin="13 0 0 0">
+                        <TextBlock TextAlignment="Center" Foreground="White"  FontSize="14" Margin="0 5 0 0" >有效率</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="White" FontSize="22"  Margin="0 5 0 0"   Text="{Binding EffectiveRate,StringFormat=P2}" />
+                    </StackPanel>
+                    <StackPanel  Width="88" Height="60" Background="#1F1F1F" AllowDrop="True" Margin="13 0 0 0">
+                        <TextBlock TextAlignment="Center" Foreground="White"  FontSize="14" Margin="0 5 0 0" >已检测</TextBlock>
+                        <TextBlock TextAlignment="Center" Foreground="#FFC000" FontSize="22"  Margin="0 5 0 0"   Text="{Binding CheckRate,StringFormat=P2}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Visibility="Hidden" x:Name="Search_TextBox" Text="" Padding="8 0 0 0" FontSize="15" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="180" Height="32"></TextBox>
+                        <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"   Foreground="White"    Height="32" Width="180" FontSize="15" Padding="8 0 32 0" VerticalContentAlignment="Center"/>
+                        <Button  Style="{StaticResource SearchCloseButtonStyle}" 
+                                 Width="32" Height="32" Margin="-32 0 0 0"  
+                                 BorderThickness="0" Foreground="White" 
+                                 FontFamily="Segoe MDL2 Assets" 
+                                 Content="&#xE106;" 
+                                 Click="SearchButtonClear_Click" 
+                                 Visibility="{Binding IsSearchCloseButtonVisibility}"
+                                  >
+                        </Button>
+
+                        <Button  Visibility="Hidden"  Width="42" Height="32" Margin="-1 0 0 0"  BorderThickness="0" Foreground="White" Background="#0078D4" FontFamily="Segoe MDL2 Assets" Content="&#xe1a3;" Click="SearchButton_Click"></Button>
+                    </StackPanel>
+                    
+                    <Button Style="{StaticResource CustomButtonImgTxtStyle}" Content="清空"  Width="68" Height="60"  Margin="20 0 0 0" Tag="&#xe107;" Click="ClearButton_Click" />
+                    <Button Width="68" Height="60"  Margin="0 0 0 0" Content=" " BorderThickness="0" Background="#1F1F1F" Click="SettingsButton_Click"/>
+               
+                </StackPanel>
+
+                <!-- Popup 模拟下拉菜单 -->
+                <Popup x:Name="DropdownPopup" 
+                       PlacementTarget="{Binding ElementName=DropdownButton}" 
+                       AllowsTransparency="True"
+                       Placement="Bottom" 
+                       StaysOpen="False" 
+                       IsOpen="False" >
+                  
+
+                    <Border Background="#2C2C2C"  
+                            BorderBrush="#2C2C2C" 
+                            BorderThickness="3" 
+                            CornerRadius="5"
+                            Width="180">
+                        <StackPanel  >
+                            <Button BorderBrush="Transparent" Tag="&#xf15b;"  Content="另存为m3u"          Margin="0" Height="30" BorderThickness="0" Style="{StaticResource RoundedButtonStyle}" Click="SaveAllM3uButton_Click"/>
+                            <Button BorderBrush="Transparent" Tag="&#xf15c;"  Content="仅有效链接另存为m3u" Margin="0" Height="30" BorderThickness="0" Style="{StaticResource RoundedButtonStyle}" Click="SaveOkM3uButton_Click"/>
+                            <Button BorderBrush="Transparent" Tag="&#xf15b;"  Content="另存为Txt"          Margin="0" Height="30" BorderThickness="0" Style="{StaticResource RoundedButtonStyle}" Click="SaveAllTxtButton_Click"/>
+                            <Button BorderBrush="Transparent" Tag="&#xf15c;"  Content="仅有效链接另存为Txt" Margin="0" Height="30" BorderThickness="0" Style="{StaticResource RoundedButtonStyle}" Click="SaveOkTxtButton_Click"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
+            </DockPanel>
+
+
+         
+
+            <!--<Grid HorizontalAlignment="Left">
+                <Button Style="{StaticResource CustomButtonStyleWithoutGroup}" Content="&#xf013;"  Width="50" Height="50" Click="SettingsButton_Click"/>
+                <Button Margin="160 0 0 0" Style="{StaticResource CustomButtonStyleWithoutGroup}" Content="&#xf013;"  Width="50" Height="50" Click="SettingsButton_Click"/>
+                
+            </Grid>
+            <Grid>
+                <Button Style="{StaticResource CustomButtonStyleWithoutGroup}" Content="&#xf013;"  Width="50" Height="50" Click="SettingsButton_Click"/>
+            </Grid>-->
+          
+        </Grid>
+        
+        <Grid Grid.Row="2" Background="Black" ShowGridLines="False" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background='#2B2B2B' Grid.Column="0"  Margin="{Binding TopMargin}" >
+                <DockPanel  HorizontalAlignment="Left" >
+                    <!-- 左下角按钮 -->
+                    <StackPanel DockPanel.Dock="Bottom"  Orientation="Vertical">
+                        <Button Style="{StaticResource CustomButtonStyleWithoutGroup}" Content="&#xf013;"  Width="50" Height="50" ToolTip="设置" Click="SettingsButton_Click"/>
+                        <Button Style="{StaticResource CustomButtonStyleWithoutGroup}" Content="&#xf06a;"  Width="50" Height="50" ToolTip="关于" Click="InfoButton_Click"/>
+                        <Popup x:Name="MyPopup" Placement="Center" StaysOpen="False">
+                            <Border BorderBrush="Gray" BorderThickness="1" Background="#2b2b2b" Width="300" Height="200">
+                                <TextBlock Text="Version 1.0.0" 
+                                           Foreground="White"
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            FontSize="20"/>
+                            </Border>
+                        </Popup>
+
+                    </StackPanel>
+                    <!-- 左上角按钮 -->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <!-- 使用自定义按钮 TargetButton ToggleButton-->
+
+                        <RadioButton x:Name="ListRadioButton"      Style="{StaticResource CustomButtonStyle}" ToolTip="列表" Content="&#xf03a;" GroupName="Group1" Width="50" Height="50" IsChecked="True" />
+                        <RadioButton x:Name="SnapshotsRadioButton" Style="{StaticResource CustomButtonStyle}" ToolTip="快照" Content="&#xf009;" GroupName="Group1" Width="50" Height="50"  Unchecked="SnapshotsRadioButton_Unchecked"  Checked="SnapshotsRadioButton_Checked" />
+                        <RadioButton x:Name="IconRadioButton"      Style="{StaticResource CustomButtonStyle}" ToolTip="台标" Content="&#xf00a;" GroupName="Group1" Width="50" Height="50" />
+                        <RadioButton x:Name="PlayRadioButton"      Style="{StaticResource CustomButtonStyle}" ToolTip="播放" Content="&#xf26c;" GroupName="Group1" Width="50" Height="50"  Unchecked="PlayRadioButton_Unchecked"  Checked="PlayRadioButton_Checked" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!--选项卡1-->
+            <Grid Grid.Column="1" Visibility="{Binding IsChecked, ElementName=ListRadioButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ListView ItemsSource="{Binding Channels}" Margin="0 5 0 0" Background="Black" BorderThickness="0"                        
+                          PreviewMouseRightButtonDown="ListView_PreviewMouseRightButtonDown">
+                    <ListView.Resources>
+                        <!--配置 VirtualizingStackPanel-->
+                        <Style TargetType="{x:Type ListView}">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                            <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel"/>
+                        </Style>
+                        
+                        <ContextMenu x:Key="ItemContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="复制播放地址" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                            <MenuItem Header="删除" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                            <ContextMenu.Triggers>
+                                <!--弹出动画-->
+                                <EventTrigger RoutedEvent="ContextMenu.Opened">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="10" To="0" Duration="0:0:0.3" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </ContextMenu.Triggers>
+                            <ContextMenu.RenderTransform>
+                                <TranslateTransform />
+                                <!--弹出动画-->
+                            </ContextMenu.RenderTransform>
+                        </ContextMenu>
+                        <!-- 自定义上下文菜单样式-->
+                        <Style TargetType="ContextMenu">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ContextMenu">
+                                        <Border Padding="3" Background="#2C2C2C" BorderBrush="#363636" BorderThickness="1" CornerRadius="5">
+                                            <StackPanel>
+                                                <ItemsPresenter />
+                                            </StackPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <!-- 自定义 MenuItem 样式 -->
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="#2C2C2C" />
+                            <Setter Property="Height" Value="30" />
+                            <Setter Property="Width" Value="130" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="MenuItem">
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="4">
+                                            <Grid>
+                                                <!--<Rectangle x:Name="Highlight" Fill="Gray" Opacity="0" />-->
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <!-- 图标 -->
+                                                    <ContentPresenter ContentSource="Icon" Margin="5,0" VerticalAlignment="Center" />
+                                                    <!-- 菜单文字 -->
+                                                    <TextBlock Text="{TemplateBinding Header}" 
+                                                        Foreground="{TemplateBinding Foreground}" 
+                                                        Margin="15,0" 
+                                                        VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <!-- 鼠标悬停样式 -->
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <!--<Setter TargetName="Highlight" Property="Opacity" Value="1" />-->
+                                                <Setter Property="Background" Value="#0078D4" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ContextMenu>
+                        <StaticResource ResourceKey="ItemContextMenu" />
+                    </ListView.ContextMenu>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <!--<EventSetter Event="PreviewMouseRightButtonDown" Handler="ListViewItem_PreviewMouseRightButtonDown" />-->
+                            <!-- 设置背景颜色 -->
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="BorderThickness" Value="0" />
+
+                            <!-- 鼠标悬停触发器 -->
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red" />
+                                </Trigger>
+
+                                <DataTrigger Binding="{Binding IsAvailable}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsAvailable}" Value="False">
+                                    <Setter Property="Background" Value="LightCoral" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                  
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="11"  >
+
+                                <!--Group名称-->
+                                <TextBlock Foreground="LightGray" Text="{Binding GroupTitle}" Width="65" Margin="50 0 0 0" VerticalAlignment="Center" />
+                                <!--显示台标-->
+                                <Image Source="{Binding Symbol}"  Width="30" Height="20" Margin="20 0 0 0" />
+                                <!--显示名称-->
+                                <TextBlock FontWeight="Bold" FontSize="16" Text="{Binding MediaName}" Width="250" Margin="20 0 0 0" VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <!--默认样式-->
+
+                                            <Setter Property="Foreground" Value="#606060" />
+                                            <Style.Triggers>
+                                                <!--当 IsRadio 为 True 时-->
+                                                <DataTrigger Binding="{Binding isAvailable}" Value="1">
+                                                    <Setter Property="Text" Value="OK" />
+                                                    <Setter Property="Foreground" Value="#fff" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <!-- 检测状态：已检测|未检测 -->
+                                <TextBlock  FontSize="11"  Width="50" VerticalAlignment="Center" >
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <!--默认样式-->
+                                            <Setter Property="Text" Value="未检测" />
+                                            <Setter Property="Foreground" Value="Gray" />
+                                            <Style.Triggers>
+                                                <!--当 IsRadio 为 True 时-->
+                                                <DataTrigger Binding="{Binding isAvailable}" Value="0">
+                                                    <Setter Property="Text" Value="offine" />
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                </DataTrigger>
+                                                <!--当 IsRadio 为 True 时-->
+                                                <DataTrigger Binding="{Binding isAvailable}" Value="1">
+                                                    <Setter Property="Text" Value="OK" />
+                                                    <Setter Property="Foreground" Value="#00bfff" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- tv guid name 
+                                <TextBlock  Text="{Binding TvgName}" Width="150" FontSize="15"  VerticalAlignment="Center" >
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#606060" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path = isAvailable}" Value="1">
+                                                    <Setter Property="Text" Value="OK" />
+                                                    <Setter Property="Foreground" Value="#fff" />
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>-->
+                                
+                                <!--动态条-->
+                                <Grid Width="300" Background="#252525" Height="4" VerticalAlignment="Center">
+                                    <Rectangle  Height="4" HorizontalAlignment="Left"
+                                        Fill="{Binding Timeout, Converter={StaticResource LatencyToColorConverter}}"  
+                                       Width="{Binding Timeout, Converter={StaticResource LatencyToWidthConverter}}" 
+                                             />
+                                </Grid>
+                                <!--延迟数值-->
+                                <TextBlock Width="55" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Right" Foreground="#808080">
+                                       <Run Text="{Binding Timeout}"  Foreground="#ffffff"></Run>
+                                       <Run Text=" ms" ></Run>
+                                </TextBlock>
+                                <!--是否为广播-->
+                                  <TextBlock  Width="87" Padding="40 0 0 0">
+                                       <InlineUIContainer>
+                                           <Border Padding="10,1" Width="47">
+                                           <Border.Style>
+                                               <Style TargetType="Border">
+                                                    <!--默认样式--> 
+                                                   <Setter Property="Background" Value="#B21016" />
+                                                   <Setter Property="CornerRadius" Value="4" />
+                                                   <Style.Triggers>
+                                                        <!--当 IsRadio 为 True 时--> 
+                                                        
+                                                       <DataTrigger Binding="{Binding Path= Radio}" Value="True">
+                                                           <Setter Property="Background" Value="#00455D" />                          
+                                                       </DataTrigger>
+                                                   </Style.Triggers>
+                                               </Style>
+                                           </Border.Style>                                               
+                                               <TextBlock FontWeight="Bold" Foreground="#FFFFFF" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <!--默认样式-->
+                                                            <Setter Property="Text" Value="TV" />
+                                                            <Setter Property="Foreground" Value="#FFFFFF" />
+                                                            <Style.Triggers>
+                                                                <!--当 IsRadio 为 True 时-->
+                                                                <DataTrigger Binding="{Binding Path = Radio}" Value="True">
+                                                                    <Setter Property="Text" Value="广播" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                               </TextBlock> 
+                                           </Border>
+                                       </InlineUIContainer>
+                                   </TextBlock>
+                                <!--URL-->
+                                <TextBlock Foreground="#808080" Margin="40 0 0 0" Text="{Binding MediaUrl}" Width="400" HorizontalAlignment="Stretch"   VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+            <!--选项卡2 频道截图-->
+            <Grid Grid.Column="1"  Background="#1b1b1b" Visibility="{Binding IsChecked, ElementName=SnapshotsRadioButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <!--<WrapPanel Margin="5" Orientation="Horizontal" >-->
+                    <ItemsControl ItemsSource="{Binding Channels}" MouseDoubleClick="Border_MouseDoubleClick"  >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1" Margin="0" Padding="5" CornerRadius="8"  >
+
+                                    <Border.ContextMenu>
+                                        <ContextMenu  Style="{StaticResource CustomContextMenuStyle}">
+                                            <MenuItem Header="复制播放地址"  Click="CopySnapshotUrl_Click"  />
+                                            <MenuItem Header="打开所在文件夹"  Click="OpenFolderMenuItem_Click" />
+                                            <MenuItem Header="重新截图"  Click="Re_Screenshot_Click" />
+                                            <ContextMenu.Triggers>
+                                                <!--弹出动画-->
+                                                <EventTrigger RoutedEvent="ContextMenu.Opened">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                                                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="10" To="0" Duration="0:0:0.3" />
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </ContextMenu.Triggers>
+                                            <ContextMenu.RenderTransform>
+                                                <TranslateTransform />
+                                                <!--弹出动画-->
+                                            </ContextMenu.RenderTransform>
+                                        </ContextMenu>
+                                    </Border.ContextMenu>
+                                  
+                                   
+
+
+
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <!-- 默认背景色 
+                                            <Setter Property="Background" Value="#1F1F1F" />-->
+
+                                            <!-- 鼠标悬停时的背景色 -->
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#3F3F3F" />
+                                                    <Setter Property="BorderBrush" Value="#2B2B2B" />
+                                                </Trigger>
+
+                                                <!-- 鼠标点击时的背景色 -->
+                                                <Trigger Property="IsMouseCaptured" Value="True">
+                                                    <Setter Property="Background" Value="SteelBlue" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+
+                                    <StackPanel>
+                                        <!-- 显示截图 -->
+
+                                        <Border CornerRadius="5" BorderBrush="#808080" BorderThickness="0" Width="356" Height="201">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{Binding Snapshot, FallbackValue='pack://application:,,,/image/placeholder.png', TargetNullValue='pack://application:,,,/image/placeholder3.png'}" Stretch="Fill" />
+                                            </Border.Background>
+                                        </Border>
+
+
+                                        <Grid>
+                                            <!-- 显示频道名 -->
+                                            <TextBlock Text="{Binding MediaName}" 
+                                                        Width="250"
+                                                FontSize="15"                                                            
+                                                Foreground="White"
+                                                FontWeight="Bold" 
+                                                Margin="5,5,0,15"
+                                                HorizontalAlignment="Left"/>
+                                            <!-- 显示延迟-->
+                                            <TextBlock Text="{Binding Timeout, StringFormat= {}{0} ms}" 
+                                                FontSize="12" FontWeight="Bold"
+                                                Foreground="DarkGray" 
+                                                Margin="0,6,5,15" 
+                                                HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!--</WrapPanel>-->
+                </ScrollViewer>
+            </Grid>
+
+            <!--选项卡3：台标展示-->
+            <Grid Grid.Column="1" Visibility="{Binding IsChecked, ElementName=IconRadioButton, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <WrapPanel Margin="7" Orientation="Horizontal"  >
+                        <ItemsControl ItemsSource="{Binding WifiList}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="Gray" BorderThickness="0" Margin="4" CornerRadius="9">
+
+
+                                        <!-- 包裹整个内容，用于处理鼠标事件 -->
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <!-- 默认背景 -->
+                                                <Style.Triggers>
+                                                    <!-- 鼠标悬停效果 -->
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#2B2B2B"/>
+                                                        <!-- 悬停时背景色 -->
+                                                    </Trigger>
+                                                    <!-- 鼠标点击效果 -->
+                                                    <Trigger Property="IsMouseCaptured" Value="True">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                        <!-- 点击时背景色 -->
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <StackPanel  >
+                                            <!-- 显示台标 -->
+                                            <Border CornerRadius="00" BorderBrush="#808080" BorderThickness="0" Width="150" Height="90" Margin="5 5 5 1">
+                                                <!-- 显示频道名 -->
+                                                <Border.Background>
+                                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding ScreenshotPath, FallbackValue='pack://application:,,,/image/placeholder.png', TargetNullValue='pack://application:,,,/image/placeholder3.png'}"/>
+                                                </Border.Background>
+                                            </Border>
+                                            <TextBlock TextAlignment="Center"   Text="{Binding Name}" Width="150" Foreground="White" Margin="5,5,5,4"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+        
+            <!--选项卡4：电视播放-->
+            <Grid Grid.Column="1" Visibility="{Binding IsChecked,ElementName=PlayRadioButton,Converter={StaticResource BoolToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" MaxWidth="400" MinWidth="53"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <ListView ItemsSource="{Binding Channels}" Margin="0 0 0 0" Background="Black" BorderThickness="0" MouseDoubleClick="ListView_MouseDoubleClick">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListView}">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                                <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel"/>
+                                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <!-- 鼠标进入时显示滚动条 -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                                    </Trigger>
+                                    <!-- 鼠标离开时隐藏滚动条 -->
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <ContextMenu x:Key="ItemContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                                <MenuItem Header="复制播放地址" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                                <MenuItem Header="收藏" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                                <MenuItem Header="删除" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                                <MenuItem Header="属性" Command="{Binding CopyToClipboardCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem.MediaUrl, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}" />
+                                <ContextMenu.Triggers>
+                                    <!--弹出动画-->
+                                    <EventTrigger RoutedEvent="ContextMenu.Opened">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="10" To="0" Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ContextMenu.Triggers>
+                                <ContextMenu.RenderTransform>
+                                    <TranslateTransform />
+                                    <!--弹出动画-->
+                                </ContextMenu.RenderTransform>
+
+                                <!--边框阴影
+                                 <ContextMenu.Effect>
+                                     <DropShadowEffect Color="White" BlurRadius="10" ShadowDepth="5" Opacity="0.5" Direction="0" RenderingBias="Performance"/>
+                                 </ContextMenu.Effect>-->
+
+                            </ContextMenu>
+                            <!-- 自定义上下文菜单样式-->
+                            <Style TargetType="ContextMenu">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ContextMenu">
+                                            <Border Padding="3" Background="#2C2C2C" BorderBrush="#363636" BorderThickness="1" CornerRadius="5">
+                                                <StackPanel>
+                                                    <ItemsPresenter />
+                                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <!-- 自定义 MenuItem 样式 -->
+                            <Style TargetType="MenuItem">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="#2C2C2C" />
+                                <Setter Property="Height" Value="30" />
+                                <Setter Property="Width" Value="130" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="MenuItem">
+                                            <Border x:Name="Border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                                 CornerRadius="4">
+                                                <Grid>
+                                                    <!--<Rectangle x:Name="Highlight" Fill="Gray" Opacity="0" />-->
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <!-- 图标 -->
+                                                        <ContentPresenter ContentSource="Icon" Margin="5,0" VerticalAlignment="Center" />
+                                                        <!-- 菜单文字 -->
+                                                        <TextBlock Text="{TemplateBinding Header}" 
+                                            Foreground="{TemplateBinding Foreground}" 
+                                            Margin="15,0" 
+                                            VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- 鼠标悬停样式 -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <!--<Setter TargetName="Highlight" Property="Opacity" Value="1" />-->
+                                                    <Setter Property="Background" Value="#0078D4" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Style>
+
+                        </ListView.Resources>
+                        <ListView.ContextMenu>
+                            <StaticResource ResourceKey="ItemContextMenu" />
+                        </ListView.ContextMenu>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Border
+                                                     Name="Border"
+                                                     Background="{TemplateBinding Background}"
+                                                     BorderBrush="{TemplateBinding BorderBrush}"
+                                                     BorderThickness="0"
+                                                     Padding="5">
+                                                <ContentPresenter />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- 鼠标悬停触发器 -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#1b1b1b" />
+                                                </Trigger>
+
+                                                <!-- 选中状态触发器 -->
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#2b2b2b" />
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+
+                                                </Trigger>
+                                                <!-- 正在播放时触发器 -->
+                                                <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                                                    <Setter Property="Background" Value="#004C8C" />
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </DataTrigger>
+
+                                                <!-- 数据条件 + 鼠标悬停 -->
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsPlaying}" Value="True" />
+                                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" />
+
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter TargetName="Border" Property="Background" Value="#004C8C" />
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                                                </MultiDataTrigger>
+
+                                                <!-- 鼠标悬停 + 选中 
+                             <MultiTrigger>
+                                 <MultiTrigger.Conditions>
+                                     <Condition Property="IsMouseOver" Value="True" />
+                                     <Condition Property="IsSelected" Value="True" />
+                                 </MultiTrigger.Conditions>
+                                 <Setter TargetName="Border" Property="Background" Value="Gold" />
+                                 <Setter TargetName="Border" Property="BorderBrush" Value="DarkOrange" />
+                             </MultiTrigger>-->
+
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsPlaying}" Value="True" />
+                                                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />
+
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter TargetName="Border" Property="Background" Value="#004C8C" />
+                                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                                                </MultiDataTrigger>
+
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <!--<Setter Property="Background" Value="Transparent" />
+             <Style.Triggers>
+                 <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                     <Setter Property="Background" Value="#004C8C" />
+                     <Setter Property="Foreground" Value="White"/>
+                 </DataTrigger>
+             </Style.Triggers>-->
+
+
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="6 5 0 5"   Orientation="Horizontal">
+                                    <!--<Image Source="{Binding TvgLogo,FallbackValue='pack://application:,,,/image/placeholder.png', TargetNullValue='pack://application:,,,/image/placeholder3.png'}" Width="30" Height="20" Margin="0 0 0 0" />-->
+                                    <Image Source="{Binding Symbol}"  Width="30" Height="20" Margin="0 0 0 0" />
+
+                                    <TextBlock Foreground="LightGray" Margin="10 8 0 8" Text="{Binding MediaName}"/>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+                
+                <GridSplitter Grid.Column="1"
+                      Width="2" 
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Stretch"
+                      Background="#1b1b1b"
+                      ResizeBehavior="PreviousAndNext" 
+                              ResizeDirection="Columns" 
+                 />
+                
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0" Background="DarkCyan">
+                        <wpf:VideoView Background="Black" x:Name="VideoView" 
+                         HorizontalAlignment="Stretch" 
+                         VerticalAlignment="Stretch"
+                         MouseDown="VideoView_MouseDown"
+                         />
+                    </Grid>
+
+                    <Grid Grid.Row="1" Background="#1F1F1F">
+                        <StackPanel Orientation="Horizontal">
+                            <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="停止" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0" Tag="&#xe004;" Width="80" Height="40" Click="StopPlayButton_Click"/>
+                            <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="录制" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0" Tag="&#xe25d;" Width="80" Height="40" />
+                            <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="打开" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0" Tag="&#xed25;" Width="80" Height="40" />
+                            <Button  Style="{StaticResource CustomMenuButtonStyle}" Content="" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 0" Tag="&#xf0ee;" Width="38" Height="40" />
+
+                            <!-- 滑块用于调节音量 
+                             <Slider x:Name="VolumeSlider" 
+                                 Width="100"
+                                 Minimum="0" 
+                                 Maximum="100" 
+                                 Value="80" 
+            
+                                 TickFrequency="1" 
+                                 IsSnapToTickEnabled="False" 
+                                 VerticalAlignment="Center"                              
+                                 ValueChanged="VolumeSlider_ValueChanged" />-->
+
+
+
+                            <Slider  x:Name="VolumeSlider"  Value="80"  Width="100" Minimum="0" Maximum="100" IsSelectionRangeEnabled="True" VerticalAlignment="Center" ValueChanged="VolumeSlider_ValueChanged" Style="{DynamicResource SliderStyle1}"/>
+                             
+                            <StackPanel Margin="16 5 0 5"   Orientation="Horizontal">
+                                <!--<Image Source="{Binding TvgLogo,FallbackValue='pack://application:,,,/image/placeholder.png', TargetNullValue='pack://application:,,,/image/placeholder3.png'}" Width="30" Height="20" Margin="0 0 0 0" />-->
+                                <Image Source="{Binding CurrentPlayChannel.Symbol}"  Width="52" Height="25" Margin="10 0 0 0" VerticalAlignment="Center"/>
+                                <TextBlock Foreground="LightGray" FontSize="20" FontWeight="Heavy" Margin="10 0 0 0" VerticalAlignment="Center" Text="{Binding CurrentPlayChannel.MediaName}"/>
+                                
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>         
+                    
+                </Grid>
+                
+
+            </Grid>
+        </Grid>
+    </Grid>
+    <!--</Border>-->
+</Window>
+
+
+  

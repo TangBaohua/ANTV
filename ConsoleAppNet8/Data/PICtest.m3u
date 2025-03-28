@@ -1,0 +1,10 @@
+﻿#EXTM3U
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="",GEAR_2_4x3
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="苹果台" radio="",GEAR_2_360
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="中央台" radio="false",GEAR_4_720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+
+
+ 

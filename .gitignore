@@ -1,0 +1,7 @@
+
+**/[Bb]in/
+**/[Dd]ebug/
+**/[Oo]bj/
+
+ANTV/bin/Debug/net9.0-windows/Snapshot/
+ANTV/bin/Debug/net9.0-windows/ffmpeg.exe

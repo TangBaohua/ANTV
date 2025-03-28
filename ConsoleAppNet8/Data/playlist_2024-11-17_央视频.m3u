@@ -1,0 +1,33 @@
+﻿#EXTM3U
+#EXTINF:-1 tvg-name="CCTV6-2013693901" tvg-logo="" group-title="",CCTV6
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2015835201" tvg-logo="" group-title="",央视频
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2015835201/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2022606701" tvg-logo="" group-title="",兵团卫视
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2022606701/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2022653701" tvg-logo="" group-title="",中国联通-北京路商圈
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2022653701/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2022823801" tvg-logo="" group-title="",CETV1
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2022823801/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2023601901" tvg-logo="" group-title="",孔子博物馆
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2023601901/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2023602601" tvg-logo="" group-title="",孔子博物馆B
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2023602601/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2023672701" tvg-logo="" group-title="",香港
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2023672701/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2024889801" tvg-logo="" group-title="",苗桥
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2024889801/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2024889901" tvg-logo="" group-title="",某仿古长廊
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2024889901/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2024890001" tvg-logo="" group-title="",桂林
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2024890001/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2025618701" tvg-logo="" group-title="",鸭体
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2025618701/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2025637701" tvg-logo="" group-title="",2025637701
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2025637701/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2025655601" tvg-logo="" group-title="",2025655601
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2025655601/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="2025662301" tvg-logo="" group-title="",2025662301
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2025662301/timeshift.m3u8?delay=0
+#EXTINF:-1 tvg-name="CCTV6-2013693902" tvg-logo="" group-title="",CCTV6A
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0

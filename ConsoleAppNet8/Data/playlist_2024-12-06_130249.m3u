@@ -1,0 +1,51 @@
+﻿#EXTM3U
+#EXTINF:-1 tvg-name="bipbopall" tvg-logo="" group-title="广播电台" radio="true",bipbopall
+http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="true",gear2
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="广播电台" radio="true",prog_index
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="广播电台" radio="true",gear4-720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear5-1080" tvg-logo="" group-title="广播电台" radio="true",gear5-1080
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8
+#EXTINF:-1 tvg-name="bipbopall" tvg-logo="" group-title="广播电台" radio="true",bipbopall
+http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="true",gear2
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="广播电台" radio="true",prog_index
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="广播电台" radio="true",gear4-720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear5-1080" tvg-logo="" group-title="广播电台" radio="true",gear5-1080
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8
+#EXTINF:-1 tvg-name="bipbopall" tvg-logo="" group-title="广播电台" radio="true",bipbopall
+http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="true",gear2
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="广播电台" radio="true",prog_index
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="广播电台" radio="true",gear4-720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear5-1080" tvg-logo="" group-title="广播电台" radio="true",gear5-1080
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8
+#EXTINF:-1 tvg-name="bipbopall" tvg-logo="" group-title="广播电台" radio="true",bipbopall
+http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="true",gear2
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="广播电台" radio="true",prog_index
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="广播电台" radio="true",gear4-720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear5-1080" tvg-logo="" group-title="广播电台" radio="true",gear5-1080
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8
+#EXTINF:-1 tvg-name="bipbopall" tvg-logo="" group-title="广播电台" radio="true",bipbopall
+http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+#EXTINF:-1 tvg-name="gear2" tvg-logo="" group-title="广播电台" radio="true",gear2
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="prog_index" tvg-logo="" group-title="广播电台" radio="true",prog_index
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear2/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear4-720" tvg-logo="" group-title="广播电台" radio="true",gear4-720
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8
+#EXTINF:-1 tvg-name="gear5-1080" tvg-logo="" group-title="广播电台" radio="true",gear5-1080
+http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8
